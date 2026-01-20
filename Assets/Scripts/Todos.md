@@ -21,3 +21,6 @@ UIManager (HUD updates)✅
 - Consistent names like `EnemyBasic`, `WeaponPistolSO`, `UI_HUD`
 - One place for constants/tags/layers (example layers: `Enemy`, `ARPlane`, `Projectile`)
 - Keep scripts grouped by feature: `AR/`, `Player/`, `Enemies/`, `UI/`, `Core/`
+
+
+-----------------------shooting------------------------------------
