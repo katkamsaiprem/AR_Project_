@@ -33,4 +33,5 @@ UIManager (HUD updates)✅
 
 --ui-
 --add crosshair--✅
---Fire particle effect when bullet is fired✅
+--Fire particle effect when bullet is fired
+--also add particle effect hit location
