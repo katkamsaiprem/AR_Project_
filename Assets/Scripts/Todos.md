@@ -24,3 +24,15 @@ UIManager (HUD updates)✅
 
 
 -----------------------shooting------------------------------------
+--take mouse input or phone touch input--✅
+--instantiate bullet prefab at spawn point--✅
+--destroy bullet after 10 seconds--✅
+--on bullet collision with enemy, destroy enemy and bullet--✅
+--use object pooling for bullets--✅
+
+
+--ui-
+--add crosshair--✅
+--Fire particle effect when bullet is fired
+--also add particle effect hit location
+--add reload feature
