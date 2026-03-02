@@ -31,6 +31,7 @@ public class InputManager : MonoBehaviour
 
     public void TriggerReload()
     {
+        Debug.Log("Reload pressed!");
         OnReloadPressed?.Invoke();// if OnReloadPressed != null then invoke
     }
 }
