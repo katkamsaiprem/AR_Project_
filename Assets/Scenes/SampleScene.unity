@@ -6139,13 +6139,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370570438}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -2.42, y: -0.05, z: 0.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4704383959661676622}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
 --- !u!114 &370570440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6186,7 +6186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6eb4c8873f45ae4ea6c834317c52d62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletPool
-  bulletPrefab: {fileID: 1165951556322265886, guid: edf3bbd1a1f2b5042b9d7ff157b0afcb, type: 3}
+  bulletPrefab: {fileID: 6681766636307311056, guid: d86ac54c80bc64d4da120230a87a4110, type: 3}
   poolSize: 20
 --- !u!1 &411164997
 GameObject:
@@ -11372,7 +11372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5758742884351905738, guid: b8db6161040dede4291f3f58bd297acd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.17424
+      value: -3.22
       objectReference: {fileID: 0}
     - target: {fileID: 5758742884351905738, guid: b8db6161040dede4291f3f58bd297acd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14038,7 +14038,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3960879645201706419}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 933e18ea02e20a1429dc3cdc3671dbc7, type: 3}
   m_Name: 
@@ -14051,7 +14051,7 @@ MonoBehaviour:
   autoFire: 1
   shotDelay: 1
   rotate: 0
-  rotationSpeed: 0.15
+  rotationSpeed: 0
   scope: {fileID: 0}
   scopeActive: 1
   projectilePrefab: {fileID: 0}
