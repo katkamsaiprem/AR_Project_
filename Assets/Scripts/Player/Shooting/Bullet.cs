@@ -3,6 +3,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifetime = 10f;
+   [SerializeField] private GameObject bulletCollideEffect;
+    
     
     private BulletPool pool;
     private float spawnTime;
@@ -16,7 +18,7 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         // Move forward
-        transform.position += transform.up * (speed * Time.deltaTime);
+        transform.position += transform.forward * (speed * Time.deltaTime);
         
         // Check lifetime
         if (Time.time - spawnTime >= lifetime)
@@ -30,6 +32,8 @@ public class Bullet : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             Destroy(other.gameObject); // Destroy enemy
+            Instantiate(bulletCollideEffect, transform.position, Quaternion.identity);
+            
             pool.ReturnBullet(gameObject); // Return bullet to pool
         }
     }
