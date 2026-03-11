@@ -588,7 +588,7 @@ GameObject:
   - component: {fileID: 180080105}
   - component: {fileID: 180080107}
   - component: {fileID: 180080106}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: ShootEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6124,7 +6124,7 @@ GameObject:
   - component: {fileID: 370570442}
   - component: {fileID: 370570441}
   - component: {fileID: 370570440}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: BulletSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11366,14 +11366,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1041878141695325679, guid: b8db6161040dede4291f3f58bd297acd, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 4448447718798587657}
-    - target: {fileID: 1041878141695325679, guid: b8db6161040dede4291f3f58bd297acd, type: 3}
-      propertyPath: whatIsPlayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     - target: {fileID: 4624070703688543893, guid: b8db6161040dede4291f3f58bd297acd, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -12962,70 +12954,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972491476}
   m_CullTransparentMesh: 1
---- !u!1 &1974645160
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1974645161}
-  - component: {fileID: 1974645162}
-  m_Layer: 0
-  m_Name: NavMesh
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1974645161
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974645160}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.41202, y: 0.46188, z: 1.58}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1974645162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974645160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
-  m_SerializedVersion: 0
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 6a28dcdf37436134d9dddaaa9a0f2b85, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1 &1975205120
 GameObject:
   m_ObjectHideFlags: 0
@@ -14047,7 +13975,7 @@ GameObject:
   - component: {fileID: 3688532447836721893}
   - component: {fileID: 9166191692811960626}
   - component: {fileID: 9166191692811960627}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Assault_Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14139,7 +14067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4448447718798587657}
   - component: {fileID: 3960879645201706417}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Assault_Rifle_M4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14323,7 +14251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7981648181049407588}
   - component: {fileID: 7981648181049407591}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14451,7 +14379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7981648181407450356}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MuzzlePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14640,4 +14568,3 @@ SceneRoots:
   - {fileID: 1516083495}
   - {fileID: 849239492}
   - {fileID: 444513235}
-  - {fileID: 1974645161}
