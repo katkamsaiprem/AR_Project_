@@ -4,7 +4,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifetime = 10f;
    [SerializeField] private GameObject bulletCollideEffect;
-    
+   [SerializeField] private int damage = 20;
     
     private BulletPool pool;
     private float spawnTime;
@@ -27,14 +27,15 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+void OnTriggerEnter(Collider other)
+{
+    IDamageable damageable = other.GetComponent<IDamageable>();
+    if (damageable != null)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject); // Destroy enemy
-            Instantiate(bulletCollideEffect, transform.position, Quaternion.identity);
-            
-            pool.ReturnBullet(gameObject); // Return bullet to pool
-        }
+       // damageable.TakeDamage(damage);
+        Instantiate(bulletCollideEffect, transform.position, Quaternion.identity);
+        pool.ReturnBullet(gameObject);
     }
+}
+
 }
