@@ -8,7 +8,7 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private int maxAmmo = 10;
    // [SerializeField] private int reloadTime = 1;
 
-   [SerializeField] private ParticleSystem shootEffect;
+  // [SerializeField] private ParticleSystem shootEffect;
 
     private int currentAmmo = 0;
     private bool isReloading = false;
@@ -54,7 +54,7 @@ public class WeaponController : MonoBehaviour
     {
         if (inputManager != null)
         {
-            //Memory Leak: The destroyed object remains in memory indefinitely 
+            //Memory Leak: The destroyed object remains in memory
             
             inputManager.OnShootPressed -= Shoot;
             inputManager.OnReloadPressed -= StartReload;//we need to unsub to prevent memory leak it means the publisher holds refer to sub even ,sub is no long there
@@ -72,8 +72,8 @@ public class WeaponController : MonoBehaviour
 
         isReloading = true;
         Debug.Log("Reloading...");
-        //nameof(FinishReload) produces the string name of the method "FinishReload" at compile time
-        Invoke(nameof(FinishReload), 2.0f);// using nameof instead of "FinishReload" is safer,If you rename FinishReload, the compiler updates nameof(FinishReload) automatically 
+      
+        Invoke(nameof(FinishReload), 2.0f);
 
     }
 

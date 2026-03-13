@@ -1,16 +1,18 @@
+
 using UnityEngine;
 
-public class EnemyRusher : MonoBehaviour
+public class EnemyRusher : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private float lastDamageTime;
 
-    // Update is called once per frame
-    void Update()
+    protected override void TryAttack()
     {
-        
+        // Rushers deal melee damage when close
+        if (Time.time - lastDamageTime < data.fireRate) return;
+        lastDamageTime = Time.time;
+
+        // Find player and damage them directly
+        GameObject playerObj = player.gameObject;
+        playerObj.GetComponent<IDamageable>()?.TakeDamage(data.damage);
     }
 }

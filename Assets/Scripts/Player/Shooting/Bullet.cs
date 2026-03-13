@@ -3,7 +3,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifetime = 10f;
-   [SerializeField] private GameObject bulletCollideEffect;
+  // [SerializeField] private GameObject bulletCollideEffect;
    [SerializeField] private int damage = 20;
     
     private BulletPool pool;
@@ -32,8 +32,8 @@ void OnTriggerEnter(Collider other)
     IDamageable damageable = other.GetComponent<IDamageable>();
     if (damageable != null)
     {
-       // damageable.TakeDamage(damage);
-        Instantiate(bulletCollideEffect, transform.position, Quaternion.identity);
+       damageable.TakeDamage(damage);
+      //  Instantiate(bulletCollideEffect, transform.position, Quaternion.identity);
         pool.ReturnBullet(gameObject);
     }
 }

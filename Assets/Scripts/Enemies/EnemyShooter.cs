@@ -1,16 +1,34 @@
+
 using UnityEngine;
 
-public class EnemyShooter : MonoBehaviour
+public class EnemyShooter : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+
+    private float lastFireTime;
+
+    protected override void TryAttack()
     {
-        
+        // data.fireRate comes from ScriptableObject
+        if (Time.time - lastFireTime < data.fireRate) return;
+
+        lastFireTime = Time.time;
+        ShootAtPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ShootAtPlayer()
     {
-        
+        if (bulletPrefab == null || firePoint == null) return;
+
+        // Aim at player
+        Vector3 direction = (player.position - firePoint.position).normalized;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, rotation);
+
+        // Enemy bullet uses same Bullet.cs but with different tag handling
+        EnemyBullet eb = bullet.GetComponent<EnemyBullet>();
+        if (eb != null) eb.SetDamage(data.damage);
     }
 }
