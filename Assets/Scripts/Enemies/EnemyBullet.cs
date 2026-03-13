@@ -1,16 +1,27 @@
+
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float lifetime = 5f;
+    private int damage = 10;
 
-    // Update is called once per frame
+    public void SetDamage(int dmg) => damage = dmg;
+
+    void Start() => Destroy(gameObject, lifetime);
+
     void Update()
     {
-        
+        transform.position += transform.forward * (speed * Time.deltaTime);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<IDamageable>()?.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

@@ -1,16 +1,19 @@
+
+using System;
 using UnityEngine;
 
-public class GameEvents : MonoBehaviour
+public static class GameEvents
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // Enemy 
+    // (int scoreValue, Vector3 position)
+    public static event Action<int, Vector3> OnEnemyDied;
+    public static void EnemyDied(int score, Vector3 pos) => OnEnemyDied?.Invoke(score, pos);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // Player 
+    public static event Action OnPlayerDied;
+    public static void PlayerDied() => OnPlayerDied?.Invoke();
+
+    // Score 
+    public static event Action<int> OnScoreChanged;   // new total
+    public static void ScoreChanged(int total) => OnScoreChanged?.Invoke(total);
 }
