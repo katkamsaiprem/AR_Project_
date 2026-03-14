@@ -18,6 +18,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (IsDead) return;
         currentHealth = Mathf.Max(0, currentHealth - damage);
+        Debug.Log(currentHealth);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         if (IsDead)
