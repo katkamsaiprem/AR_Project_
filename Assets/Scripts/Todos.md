@@ -39,11 +39,11 @@ UIManager (HUD updates)✅
 
 
 ----------------------------enemies System----------------------
---spawn enemies at random intervals and locations in the AR space--
---enemies should shoot back at the player
---add health system for player and enemies--
---add score system for killing enemies--
---add different enemy types with varying behaviors and health--
+--spawn enemies at random intervals and locations in the AR space--✅
+--enemies should shoot back at the player✅
+--add health system for player and enemies--✅
+--add score system for killing enemies--✅
+--add different enemy types with varying behaviors and health--✅
 ----------------------------game states----------------------
 --implement game states: menu, playing, paused, game over--
 --add UI for each state (main menu, pause menu, game over screen)--
@@ -62,3 +62,4 @@ UIManager (HUD updates)✅
 --add different weapon types with varying stats (e.g., damage, fire rate, reload time)--
 --implement a simple UI for the gun store that shows available weapons and their stats--
 --allow players to purchase weapons using points earned from killing enemies--
+
