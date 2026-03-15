@@ -6,9 +6,10 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private BulletPool bulletPool;
     [SerializeField] private int maxAmmo = 10;
-   // [SerializeField] private int reloadTime = 1;
+    //[SerializeField] private int reloadTime = 1;
+    //[SerializeField] private ParticleSystem shootEffect;
 
-  // [SerializeField] private ParticleSystem shootEffect;
+    public event System.Action<int, int, bool> OnAmmoChanged; // current, max, isReloading
 
     private int currentAmmo = 0;
     private bool isReloading = false;
@@ -25,39 +26,37 @@ public class WeaponController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("InputManager NOT found!"); 
+            Debug.LogError("InputManager NOT found!");
         }
 
         currentAmmo = maxAmmo;
+        OnAmmoChanged?.Invoke(currentAmmo, maxAmmo, isReloading);
     }
 
     void Shoot()
     {
         if (currentAmmo <= 0 || isReloading)
-        {
             return;
-        }
+
         GameObject bullet = bulletPool.GetBullet();
         bullet.transform.position = bulletSpawnPoint.position;
         bullet.transform.rotation = bulletSpawnPoint.rotation;
+
         Bullet bulletScript = bullet.GetComponent<Bullet>();
         bulletScript.Initialize(bulletPool);
-        
 
         currentAmmo--;
+        OnAmmoChanged?.Invoke(currentAmmo, maxAmmo, isReloading);
         Debug.Log($"Ammo: {currentAmmo}/ {maxAmmo}");
-       // shootEffect.Play();
+        //shootEffect?.Play();
     }
 
-    void OnDestroy()//this method is invoked ,When a component or its parent GameObject is explicitly destroyed with Object.Destroy.
-  //  When a scene ends
+    void OnDestroy()
     {
         if (inputManager != null)
         {
-            //Memory Leak: The destroyed object remains in memory
-            
             inputManager.OnShootPressed -= Shoot;
-            inputManager.OnReloadPressed -= StartReload;//we need to unsub to prevent memory leak it means the publisher holds refer to sub even ,sub is no long there
+            inputManager.OnReloadPressed -= StartReload;
         }
         CancelInvoke(nameof(FinishReload));
     }
@@ -65,28 +64,26 @@ public class WeaponController : MonoBehaviour
     private void StartReload()
     {
         Debug.Log("StartReload called!");
-        if (currentAmmo == maxAmmo || isReloading)//we shouldn't reload if we have full ammo or are already reloading
-        {
+        if (currentAmmo == maxAmmo || isReloading)
             return;
-        }
 
         isReloading = true;
+        OnAmmoChanged?.Invoke(currentAmmo, maxAmmo, isReloading);
         Debug.Log("Reloading...");
-      
         Invoke(nameof(FinishReload), 2.0f);
-
     }
 
     private void FinishReload()
     {
         currentAmmo = maxAmmo;
         isReloading = false;
+        OnAmmoChanged?.Invoke(currentAmmo, maxAmmo, isReloading);
         Debug.Log("Reload finished!");
     }
 
     void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame) 
+        if (Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame)
         {
             Debug.Log("Manual reload test triggered");
             StartReload();

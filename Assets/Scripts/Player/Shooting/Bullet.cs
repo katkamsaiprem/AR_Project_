@@ -29,6 +29,8 @@ public class Bullet : MonoBehaviour
 
 void OnTriggerEnter(Collider other)
 {
+  if (other.CompareTag("Player")) return;
+    
     IDamageable damageable = other.GetComponent<IDamageable>();
     if (damageable != null)
     {
