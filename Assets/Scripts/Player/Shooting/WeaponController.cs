@@ -8,6 +8,10 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private int maxAmmo = 10;
     //[SerializeField] private int reloadTime = 1;
     //[SerializeField] private ParticleSystem shootEffect;
+    
+    [Header("Muzzle Flash")]
+    public GameObject muzzlePrefab;
+    public GameObject muzzlePosition;  
 
     public event System.Action<int, int, bool> OnAmmoChanged; // current, max, isReloading
 
@@ -20,13 +24,13 @@ public class WeaponController : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
         if (inputManager != null)
         {
-            Debug.Log("InputManager found and subscribed!");
+            Debug.Log("InputManager found and subscribed");
             inputManager.OnShootPressed += Shoot;
             inputManager.OnReloadPressed += StartReload;
         }
         else
         {
-            Debug.LogError("InputManager NOT found!");
+            Debug.LogError("InputManager not found");
         }
 
         currentAmmo = maxAmmo;
@@ -48,7 +52,14 @@ public class WeaponController : MonoBehaviour
         currentAmmo--;
         OnAmmoChanged?.Invoke(currentAmmo, maxAmmo, isReloading);
         Debug.Log($"Ammo: {currentAmmo}/ {maxAmmo}");
-        //shootEffect?.Play();
+       // shootEffect?.Play();
+       if (muzzlePrefab != null)
+       {
+      
+               var flash = Instantiate(muzzlePrefab, muzzlePosition.transform.position, muzzlePosition.transform.rotation);
+           
+           muzzlePrefab.SetActive(true);
+       }
     }
 
     void OnDestroy()
@@ -63,7 +74,7 @@ public class WeaponController : MonoBehaviour
 
     private void StartReload()
     {
-        Debug.Log("StartReload called!");
+        Debug.Log("StartReload called");
         if (currentAmmo == maxAmmo || isReloading)
             return;
 
@@ -78,7 +89,7 @@ public class WeaponController : MonoBehaviour
         currentAmmo = maxAmmo;
         isReloading = false;
         OnAmmoChanged?.Invoke(currentAmmo, maxAmmo, isReloading);
-        Debug.Log("Reload finished!");
+        Debug.Log("Reload finished");
     }
 
     void Update()
@@ -90,3 +101,5 @@ public class WeaponController : MonoBehaviour
         }
     }
 }
+
+
