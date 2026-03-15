@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private ARRaycastManager arRaycastManager;
     [SerializeField] private Camera arCamera;
 
+
     private int activeEnemies;
     private readonly List<ARRaycastHit> arHits = new List<ARRaycastHit>();
     private Coroutine initialSpawner;
@@ -70,9 +71,12 @@ public class EnemySpawner : MonoBehaviour
         if (spawnPos == Vector3.zero) return false; 
 
         GameObject prefab = PickWeightedRandom();
+        
         if (prefab == null) return false;
 
         Instantiate(prefab, spawnPos, Quaternion.identity);
+        var ui = prefab.GetComponentInChildren<EnemyHealthUI>();
+        if (ui != null) ui.SetCamera(arCamera);
         activeEnemies++;
         return true;
     }

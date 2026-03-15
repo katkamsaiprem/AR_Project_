@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour, IDamageable
@@ -9,25 +8,30 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
     protected int currentHealth;
     protected bool isDead;
 
-    // IDamageable 
+    public event System.Action<int, int> OnHealthChanged; // current, max
+
+    
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => data != null ? data.maxHealth : 0;
+
     public bool IsDead => isDead;
 
     public void TakeDamage(int damage)
     {
         if (isDead) return;
         currentHealth -= damage;
+        OnHealthChanged?.Invoke(currentHealth, MaxHealth);
         if (currentHealth <= 0) Die();
     }
 
-    // Unity Lifecycle 
     protected virtual void Awake()
     {
-        currentHealth = data.maxHealth;
+        currentHealth = MaxHealth;
+        OnHealthChanged?.Invoke(currentHealth, MaxHealth);
     }
 
     protected virtual void Start()
     {
-      
         GameObject playerObj = GameObject.FindWithTag("Player");
         if (playerObj != null) player = playerObj.transform;
     }
@@ -49,25 +53,19 @@ public abstract class EnemyBase : MonoBehaviour, IDamageable
         }
     }
 
-    //Shared Behavior 
     protected void LookAtPlayer()
     {
-        // Smooth rotation
         Vector3 direction = (player.position - transform.position).normalized;
-        direction.y = 0f; // keep enemy upright
+        direction.y = 0f;
         Quaternion targetRot = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(
-            transform.rotation, targetRot, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
     }
 
-    // each enemy type defines this
     protected abstract void TryAttack();
 
-    //Death
     protected virtual void Die()
     {
         isDead = true;
-        
         GameEvents.EnemyDied(data.scoreValue, transform.position);
         Destroy(gameObject, 0.3f);
     }
